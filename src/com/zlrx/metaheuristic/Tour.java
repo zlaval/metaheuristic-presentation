@@ -1,4 +1,4 @@
-package com.zlrx.simulatedannealing;
+package com.zlrx.metaheuristic;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +17,10 @@ public class Tour {
         return new Tour(fromTour);
     }
 
+    public static Tour swappedCityInstance(Tour fromTour,int a, int b){
+        return new Tour(fromTour,a,b);
+    }
+
     private Tour() {
         List<City> randomTour = new ArrayList<>(CityRepository.getInstance().getCities());
         Collections.shuffle(randomTour);
@@ -25,13 +29,19 @@ public class Tour {
 
     private Tour(Tour fromTour) {
         List<City> tourCopy = new ArrayList<>(fromTour.tour);
-        swapTwoRandomCities(tourCopy);
+        int firstRnd = (int) (tourCopy.size() * Math.random());
+        int secondRnd = (int) (tourCopy.size() * Math.random());
+        swapTwoRandomCities(tourCopy,firstRnd,secondRnd);
         tour = Collections.unmodifiableList(tourCopy);
     }
 
-    private void swapTwoRandomCities(List<City> tourCopy) {
-        int firstRnd = (int) (tourCopy.size() * Math.random());
-        int secondRnd = (int) (tourCopy.size() * Math.random());
+    private Tour(Tour fromTour,int a, int b) {
+        List<City> tourCopy = new ArrayList<>(fromTour.tour);
+        swapTwoRandomCities(tourCopy,a,b);
+        tour = Collections.unmodifiableList(tourCopy);
+    }
+
+    private void swapTwoRandomCities(List<City> tourCopy, int firstRnd, int secondRnd) {
         City tmp = tourCopy.get(firstRnd);
         tourCopy.set(firstRnd, tourCopy.get(secondRnd));
         tourCopy.set(secondRnd, tmp);
@@ -46,6 +56,10 @@ public class Tour {
             }
         }
         return distance;
+    }
+
+    public int size(){
+        return tour.size();
     }
 
 }

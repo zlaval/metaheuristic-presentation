@@ -1,4 +1,6 @@
-package com.zlrx.simulatedannealing;
+package com.zlrx.metaheuristic.simulatedannealing;
+
+import com.zlrx.metaheuristic.Tour;
 
 public class SimulatedAnnealing {
 

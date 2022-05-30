@@ -1,4 +1,4 @@
-package com.zlrx.simulatedannealing;
+package com.zlrx.metaheuristic;
 
 public record City(int longitude,int latitude ) {
 

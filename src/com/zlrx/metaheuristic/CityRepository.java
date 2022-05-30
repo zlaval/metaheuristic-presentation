@@ -1,4 +1,4 @@
-package com.zlrx.simulatedannealing;
+package com.zlrx.metaheuristic;
 
 import java.util.ArrayList;
 import java.util.Collections;
